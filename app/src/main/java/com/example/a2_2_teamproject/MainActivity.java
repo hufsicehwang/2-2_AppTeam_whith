@@ -1,24 +1,18 @@
 package com.example.a2_2_teamproject;
 
-
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
+import android.graphics.Color;
 import android.os.Bundle;
 
-import android.util.Base64;
-import android.util.Log;
 import android.view.ViewGroup;
 import androidx.appcompat.app.AppCompatActivity;
 ;
 import net.daum.android.map.MapViewEventListener;
+import net.daum.mf.map.api.CameraUpdateFactory;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapPointBounds;
+import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
-
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,10 +36,28 @@ public class MainActivity extends AppCompatActivity {
         marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
         mapView.addPOIItem(marker);
 
+        MapPolyline polyline = new MapPolyline();
+        polyline.setTag(1000);
+        polyline.setLineColor(Color.argb(126, 0, 0, 0)); // Polyline 컬러 지정. argb
+
+        // Polyline 좌표 지정.
+        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.537229, 127.005515));
+        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.545024,127.03923));
+        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.527896,127.036245));
+        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.541889,127.095388));
+
+        mapView.addPolyline(polyline); // Polyline 지도에 올리기.
+
+        // 지도뷰의 중심좌표와 줌레벨을 Polyline이 모두 나오도록 조정.
+        MapPointBounds mapPointBounds = new MapPointBounds(polyline.getMapPoints());
+        int padding = 100; // px
+        mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
 
 
 
-        
+
+
+
 
 
 
