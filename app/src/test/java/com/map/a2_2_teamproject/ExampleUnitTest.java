@@ -1,4 +1,4 @@
-package com.example.a2_2_teamproject;
+package com.map.a2_2_teamproject;
 
 import org.junit.Test;
 
