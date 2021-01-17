@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f9fa"
+    tools:context=".setAdress">
+    <Button
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="60dp"
+        android:background="#96999C"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:text="중간 지점 확인하기"
+        android:textColor="#d1eb1c"
+        android:textSize="20dp"
+        android:id="@+id/btn"/>
+
+
+</LinearLayout>
