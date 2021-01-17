@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f8f9fa"
+    android:orientation="vertical"
     tools:context=".setAdress">
     <Button
-        android:layout_marginTop="500dp"
+        android:fontFamily="@font/baebalsmingok"
+        android:background="@drawable/btn_style"
+        android:layout_marginTop="550dp"
         android:layout_marginLeft="60dp"
-        android:background="#96999C"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="중간 지점 확인하기"
-        android:textColor="#d1eb1c"
-        android:textSize="20dp"
+        android:textColor="#ffa94d"
+        android:textSize="25dp"
         android:id="@+id/btn"/>
 
 

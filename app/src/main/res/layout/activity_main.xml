@@ -6,11 +6,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+    <Button
+        android:id="@+id/btn_up"
+        android:background="@drawable/btn_style"
+        android:backgroundTint="#868e96"
+        android:text="확장"
+        android:textColor="#ffa94d"
+        android:fontFamily="@font/baebalsmingok"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="345dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+    <Button
+        android:id="@+id/btn_down"
+        android:background="@drawable/btn_style"
+        android:backgroundTint="#868e96"
+        android:text="축소"
+        android:textColor="#ffa94d"
+        android:fontFamily="@font/baebalsmingok"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="290dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
     <RelativeLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
+        android:layout_height="400dp" />
 </RelativeLayout>

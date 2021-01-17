@@ -3,7 +3,9 @@ package com.map.a2_2_teamproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,13 +25,15 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
     double x;    // 위도 변수
     double y;   // 경도 변수
     int i = 0;
+    Button up;
+    Button down;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MapView mapView = new MapView(this); // MapView 객체
+        final MapView mapView = new MapView(this); // MapView 객체
         setMapTilePersistentCacheEnabled(true); // 한번 로드시 캐시에 저장
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view); // id 연결
 
@@ -65,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
         mapView.addPOIItem(marker);
         //마크2지정!!!!!!!!!
-        double e = (a+c) /2;
-        double f = (b+d) /2;
+        final double e = (a+c) /2;
+        final double f = (b+d) /2;
         //마크3 지정!!!!!!!!!
         MapPoint mapPoint3 = MapPoint.mapPointWithGeoCoord(e, f);   // 임의의 MapPoint 객체를 만듬
         marker.setItemName("중간 지점");
@@ -89,11 +93,55 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         // Polyline 지도에 올리기.
         mapView.addPolyline(polyline);
 
-        // 지도뷰의 중심좌표와 줌레벨을 Polyline이 모두 나오도록 조정.
+        /* 지도뷰의 중심좌표와 줌레벨을 Polyline이 모두 나오도록 조정.
         MapPointBounds mapPointBounds = new MapPointBounds(polyline.getMapPoints());
-        int padding = 100; // px
+        int padding = 150; // px
         mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
-        //polyline!!!!!!!!!!!!
+        polyline!!!!!!!!!!!!*/
+
+        final int radi = 4000;
+        final int upnum = 1000;
+        final MapCircle circle1 = new MapCircle(
+                MapPoint.mapPointWithGeoCoord(e,f), // center
+                radi, // radius
+                Color.argb(128, 255, 0, 0), // strokeColor
+                Color.argb(128, 0, 255, 0) // fillColor
+        );
+        circle1.setTag(1234);
+        mapView.addCircle(circle1);
+
+
+        // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
+        MapPointBounds[] mapPointBoundsArray = { circle1.getBound() };
+        MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
+        int padding = 200; // px
+        mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+
+        up = findViewById(R.id.btn_up);
+        down = findViewById(R.id.btn_down);
+
+        up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int radii =radi+ upnum;
+                mapView.removeCircle(circle1);
+                final MapCircle circle1 = new MapCircle(
+                        MapPoint.mapPointWithGeoCoord(e,f), // center
+                        radii, // radius
+                        Color.argb(128, 255, 0, 0), // strokeColor
+                        Color.argb(128, 0, 255, 0) // fillColor
+                );
+                circle1.setTag(1234);
+                mapView.addCircle(circle1);
+
+
+                // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
+                MapPointBounds[] mapPointBoundsArray = { circle1.getBound() };
+                MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
+                int padding = 200; // px
+                mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+            }
+        });
 
 
 

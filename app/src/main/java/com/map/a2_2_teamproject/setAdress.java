@@ -3,9 +3,12 @@ package com.map.a2_2_teamproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class setAdress extends AppCompatActivity {
     double a = 37.33758102688846;
@@ -16,6 +19,7 @@ public class setAdress extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_set_adress);
         btn = findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
