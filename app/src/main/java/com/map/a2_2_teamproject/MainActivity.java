@@ -93,11 +93,11 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         // Polyline 지도에 올리기.
         mapView.addPolyline(polyline);
 
-        /* 지도뷰의 중심좌표와 줌레벨을 Polyline이 모두 나오도록 조정.
+        // 지도뷰의 중심좌표와 줌레벨을 Polyline이 모두 나오도록 조정.
         MapPointBounds mapPointBounds = new MapPointBounds(polyline.getMapPoints());
         int padding = 150; // px
         mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
-        polyline!!!!!!!!!!!!*/
+        //polyline!!!!!!!!!!!!
 
         final int radi[] = {1000,2000,3000,4000,5000,10000};
         final int[] i = {2};
@@ -112,11 +112,13 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
 
 
 
-        // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
+        /*지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정. circle
         MapPointBounds[] mapPointBoundsArray = { circle1.getBound() };
         MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
         int padding = 200; // px
         mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+        */
+
 
         up = findViewById(R.id.btn_up);
         down = findViewById(R.id.btn_down);
@@ -145,7 +147,36 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
                     mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"최대 반경 입니다!", Toast.LENGTH_SHORT).show();                }
+                    Toast.makeText(getApplicationContext(),"최대 반경 입니다!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {  // 축소 버튼 구현
+                i[0] = i[0] -1;
+                if(i[0]>=0){
+                    mapView.removeCircle(circle1);
+                    circle1.setRadius(radi[i[0]]);
+                    final MapCircle circle1 = new MapCircle(
+                            MapPoint.mapPointWithGeoCoord(e,f), // center
+                            radi[i[0]], // radius
+                            Color.argb(128, 255, 0, 0), // strokeColor
+                            Color.argb(128, 0, 255, 0) // fillColor
+                    );
+                    circle1.setTag(1234);
+                    mapView.addCircle(circle1);
+
+
+                    // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
+                    MapPointBounds[] mapPointBoundsArray = { circle1.getBound() };
+                    MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
+                    int padding = 200; // px
+                    mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"최소 반경 입니다!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
