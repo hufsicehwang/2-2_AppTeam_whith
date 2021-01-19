@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <RelativeLayout
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical" >
     <Button
         android:id="@+id/btn_up"
         android:background="@drawable/btn_style"
@@ -13,8 +18,8 @@
         android:text="확장"
         android:textColor="#ffa94d"
         android:fontFamily="@font/baebalsmingok"
+        android:layout_marginTop="290dp"
         android:layout_marginLeft="350dp"
-        android:layout_marginTop="345dp"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
     <Button
@@ -25,11 +30,18 @@
         android:textColor="#ffa94d"
         android:fontFamily="@font/baebalsmingok"
         android:layout_marginLeft="350dp"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="345dp"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
-    <RelativeLayout
-        android:id="@+id/map_view"
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarSize="5dp"
+        android:scrollbarThumbHorizontal="@android:color/darker_gray"
+        android:scrollbars="horizontal"
+        android:layout_marginTop="400dp"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="330dp"/>
 </RelativeLayout>

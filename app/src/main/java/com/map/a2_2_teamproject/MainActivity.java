@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import net.daum.android.map.MapViewEventListener;
 import net.daum.mf.map.api.CameraUpdateFactory;
 import net.daum.mf.map.api.MapCircle;
@@ -20,6 +23,8 @@ import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
 
 
+import java.util.ArrayList;
+
 import static net.daum.mf.map.api.MapView.setMapTilePersistentCacheEnabled;
 public class MainActivity extends AppCompatActivity implements MapView.MapViewEventListener, MapView.POIItemEventListener, MapView.OpenAPIKeyAuthenticationResultListener{
     double x;    // 위도 변수
@@ -27,11 +32,28 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
     int i = 0;
     Button up;
     Button down;
+    private ArrayList<Maindata> arrayList;
+    private MainAdapter mainAdapter;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = (RecyclerView)findViewById(R.id.rc);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        arrayList = new ArrayList<>();
+        mainAdapter = new MainAdapter(arrayList);
+        recyclerView.setAdapter(mainAdapter);
+
+
+
+
+
 
         final MapView mapView = new MapView(this); // MapView 객체
         setMapTilePersistentCacheEnabled(true); // 한번 로드시 캐시에 저장
@@ -104,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         final MapCircle circle1 = new MapCircle(
                 MapPoint.mapPointWithGeoCoord(e,f), // center
                 radi[i[0]], // radius
-                Color.argb(128, 255, 0, 0), // strokeColor
-                Color.argb(128, 0, 255, 0) // fillColor
+                Color.argb(125, 255, 0, 0), // strokeColor
+                Color.argb(125, 173, 181, 189) // fillColor
         );
         circle1.setTag(1234);
         mapView.addCircle(circle1);
@@ -133,8 +155,8 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
                     final MapCircle circle1 = new MapCircle(
                             MapPoint.mapPointWithGeoCoord(e,f), // center
                             radi[i[0]], // radius
-                            Color.argb(128, 255, 0, 0), // strokeColor
-                            Color.argb(128, 0, 255, 0) // fillColor
+                            Color.argb(125, 255, 0, 0), // strokeColor
+                            Color.argb(125, 173, 181, 189) // fillColor
                     );
                     circle1.setTag(1234);
                     mapView.addCircle(circle1);
@@ -161,8 +183,8 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
                     final MapCircle circle1 = new MapCircle(
                             MapPoint.mapPointWithGeoCoord(e,f), // center
                             radi[i[0]], // radius
-                            Color.argb(128, 255, 0, 0), // strokeColor
-                            Color.argb(128, 0, 255, 0) // fillColor
+                            Color.argb(125, 255, 0, 0), // strokeColor
+                            Color.argb(125, 173, 181, 189) // fillColor
                     );
                     circle1.setTag(1234);
                     mapView.addCircle(circle1);
