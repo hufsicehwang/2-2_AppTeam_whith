@@ -99,16 +99,17 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
         polyline!!!!!!!!!!!!*/
 
-        final int radi = 4000;
-        final int upnum = 1000;
+        final int radi[] = {1000,2000,3000,4000,5000,10000};
+        final int[] i = {2};
         final MapCircle circle1 = new MapCircle(
                 MapPoint.mapPointWithGeoCoord(e,f), // center
-                radi, // radius
+                radi[i[0]], // radius
                 Color.argb(128, 255, 0, 0), // strokeColor
                 Color.argb(128, 0, 255, 0) // fillColor
         );
         circle1.setTag(1234);
         mapView.addCircle(circle1);
+
 
 
         // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
@@ -122,34 +123,31 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
 
         up.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                int radii =radi+ upnum;
-                mapView.removeCircle(circle1);
-                final MapCircle circle1 = new MapCircle(
-                        MapPoint.mapPointWithGeoCoord(e,f), // center
-                        radii, // radius
-                        Color.argb(128, 255, 0, 0), // strokeColor
-                        Color.argb(128, 0, 255, 0) // fillColor
-                );
-                circle1.setTag(1234);
-                mapView.addCircle(circle1);
+            public void onClick(View view) {  // 확장 버튼 구현
+                i[0] = i[0] +1;
+                if(i[0]<radi.length){
+                    mapView.removeCircle(circle1);
+                    circle1.setRadius(radi[i[0]]);
+                    final MapCircle circle1 = new MapCircle(
+                            MapPoint.mapPointWithGeoCoord(e,f), // center
+                            radi[i[0]], // radius
+                            Color.argb(128, 255, 0, 0), // strokeColor
+                            Color.argb(128, 0, 255, 0) // fillColor
+                    );
+                    circle1.setTag(1234);
+                    mapView.addCircle(circle1);
 
 
-                // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
-                MapPointBounds[] mapPointBoundsArray = { circle1.getBound() };
-                MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
-                int padding = 200; // px
-                mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+                    // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
+                    MapPointBounds[] mapPointBoundsArray = { circle1.getBound() };
+                    MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
+                    int padding = 200; // px
+                    mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"최대 반경 입니다!", Toast.LENGTH_SHORT).show();                }
             }
         });
-
-
-
-
-
-
-
-
 
 
         mapView.setMapViewEventListener(this); // this에 MapView.MapViewEventListener 구현.
