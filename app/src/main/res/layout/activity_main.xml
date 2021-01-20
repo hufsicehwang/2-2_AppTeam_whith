@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".MainActivity">
     <RelativeLayout
         android:id="@+id/map_view"
@@ -36,12 +37,12 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc"
+        android:layout_marginTop="400dp"
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:scrollbarFadeDuration="0"
         android:scrollbarSize="5dp"
-        android:scrollbarThumbHorizontal="@android:color/darker_gray"
-        android:scrollbars="horizontal"
-        android:layout_marginTop="400dp"
-        android:layout_width="match_parent"
-        android:layout_height="330dp"/>
+        android:scrollbars="horizontal"/>
 </RelativeLayout>

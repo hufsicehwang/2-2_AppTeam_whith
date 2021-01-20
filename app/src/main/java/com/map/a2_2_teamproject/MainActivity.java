@@ -42,14 +42,16 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView)findViewById(R.id.rc);
-        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView = (RecyclerView) findViewById(R.id.rv);
+        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
-
         arrayList = new ArrayList<>();
         mainAdapter = new MainAdapter(arrayList);
         recyclerView.setAdapter(mainAdapter);
-
+        for(int i = 0;i<10;i++){
+            Maindata mainData = new Maindata(R.drawable.currybrown, "커리브라운", "외대로25번길 9"+i);
+            arrayList.add(mainData);
+        }
 
 
 
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         //polyline!!!!!!!!!!!!
         MapPolyline polyline = new MapPolyline();
         polyline.setTag(1000);
-        polyline.setLineColor(Color.argb(128, 255, 51, 0)); // Polyline 컬러 지정.
+        polyline.setLineColor(Color.argb(255, 255, 169, 77)); // Polyline 컬러 지정.
 
         // Polyline 좌표 지정.
         polyline.addPoint(MapPoint.mapPointWithGeoCoord(a, b));
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         final MapCircle circle1 = new MapCircle(
                 MapPoint.mapPointWithGeoCoord(e,f), // center
                 radi[i[0]], // radius
-                Color.argb(125, 255, 0, 0), // strokeColor
+                Color.argb(255, 255, 169, 77), // strokeColor
                 Color.argb(125, 173, 181, 189) // fillColor
         );
         circle1.setTag(1234);
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
                     final MapCircle circle1 = new MapCircle(
                             MapPoint.mapPointWithGeoCoord(e,f), // center
                             radi[i[0]], // radius
-                            Color.argb(125, 255, 0, 0), // strokeColor
+                            Color.argb(255, 255, 169, 77), // strokeColor
                             Color.argb(125, 173, 181, 189) // fillColor
                     );
                     circle1.setTag(1234);
@@ -183,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
                     final MapCircle circle1 = new MapCircle(
                             MapPoint.mapPointWithGeoCoord(e,f), // center
                             radi[i[0]], // radius
-                            Color.argb(125, 255, 0, 0), // strokeColor
+                            Color.argb(255, 255, 169, 77), // strokeColor
                             Color.argb(125, 173, 181, 189) // fillColor
                     );
                     circle1.setTag(1234);

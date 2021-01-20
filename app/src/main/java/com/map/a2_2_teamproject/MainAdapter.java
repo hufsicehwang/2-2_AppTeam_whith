@@ -1,12 +1,11 @@
 package com.map.a2_2_teamproject;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,48 +22,50 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
 
     @NonNull
     @Override
-    public MainAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {// oncreat와 같음
-        LinearLayout view = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.main_items,parent,false);
+    public MainAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_items, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
+
+
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainAdapter.CustomViewHolder holder, int position) {
-        holder.image.setImageResource(arrayList.get(position).getImage());
-        holder.name.setText(arrayList.get(position).getName());
-        holder.adress.setText(arrayList.get(position).getAdress());
+    public void onBindViewHolder(@NonNull final MainAdapter.CustomViewHolder holder, int position) {
+        holder.iv_profile.setImageResource(arrayList.get(position).getIv_profile());
+        holder.tv_name.setText(arrayList.get(position).getTv_name());
+        holder.tv_content.setText(arrayList.get(position).getTv_content());
 
-        //온 클릭 여기서 구현
-        holder.itemView.setTag(position);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                view.getContext().startActivity(intent);
-            }
-        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return (null != arrayList ? arrayList.size() : 0);
+    }
+
+    public void remove(int position) {
+        try {
+            arrayList.remove(position);
+            notifyItemRemoved(position);
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        protected ImageView image;
-        protected TextView name;
-        protected TextView adress;
+        protected ImageView iv_profile;
+        protected TextView tv_name;
+        protected TextView tv_content;
 
-        public CustomViewHolder(@NonNull LinearLayout itemView) {
+        public CustomViewHolder(View itemView) {
             super(itemView);
-            this.image = (ImageView) itemView.findViewById(R.id.image);
-            this.name = (TextView) itemView.findViewById(R.id.name);
-            this.adress = (TextView) itemView.findViewById(R.id.adress);
-
-
+            this.iv_profile = (ImageView) itemView.findViewById(R.id.iv_profile);
+            this.tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            this.tv_content = (TextView) itemView.findViewById(R.id.tv_content);
         }
     }
 }
+
