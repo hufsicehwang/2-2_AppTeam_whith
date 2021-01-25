@@ -9,13 +9,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import net.daum.android.map.MapViewEventListener;
 import net.daum.mf.map.api.CameraUpdateFactory;
 import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
@@ -34,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
     int i = 0;
     Button up;
     Button down;
+    Button back;
 
 
     @Override
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         double b = intent.getDoubleExtra("경도1", 2);
         double c = intent.getDoubleExtra("위도2", 3);
         double d = intent.getDoubleExtra("경도2", 4);
-        MapPOIItem marker = new MapPOIItem();
+        final MapPOIItem marker = new MapPOIItem();
 
         marker.setShowAnimationType(MapPOIItem.ShowAnimationType.DropFromHeaven); // 하늘에서 날라오는 애니메이션 마커 생성 전에 선언 해야함.
 
@@ -80,6 +78,19 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
         mapView.addPOIItem(marker);
         //마크1지정!!!!!!!!!
+        /* custom marker
+        MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(a, b);
+        MapPOIItem customMarker = new MapPOIItem();
+        customMarker.setItemName("나의 위치");
+        customMarker.setTag(1);
+        customMarker.setMapPoint(mapPoint);
+        customMarker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커타입을 커스텀 마커로 지정.
+        customMarker.setCustomImageResourceId(R.drawable.marker1); // 마커 이미지.
+        customMarker.setCustomImageAutoscale(false); // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
+        customMarker.setCustomImageAnchor(0.5f, 1.0f); // 마커 이미지중 기준이 되는 위치(앵커포인트) 지정 - 마커 이미지 좌측 상단 기준 x(0.0f ~ 1.0f), y(0.0f ~ 1.0f) 값.
+        customMarker.setCustomImageAnchorPointOffset(new MapPOIItem.ImageOffset(30,0));
+        mapView.addPOIItem(customMarker);
+        */
         //마크2 지정!!!!!!!!!
         MapPoint mapPoint2 = MapPoint.mapPointWithGeoCoord(c, d);   // 임의의 MapPoint 객체를 만듬
         marker.setItemName("친구 위치");
@@ -138,6 +149,17 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         int padding = 200; // px
         mapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
         */
+
+        back = findViewById(R.id.btn_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, setAdress.class);
+                mapView.removePOIItem(marker);
+                startActivity(intent);
+
+            }
+        });
 
 
         up = findViewById(R.id.btn_up);
