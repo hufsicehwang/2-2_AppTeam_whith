@@ -1,48 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
     <RelativeLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:orientation="vertical" >
-    <Button
-        android:id="@+id/btn_up"
-        android:background="@drawable/btn_style"
-        android:backgroundTint="#868e96"
-        android:text="확장"
-        android:textColor="#ffa94d"
-        android:fontFamily="@font/baebalsmingok"
-        android:layout_marginTop="290dp"
-        android:layout_marginLeft="350dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
-    <Button
-        android:id="@+id/btn_down"
-        android:background="@drawable/btn_style"
-        android:backgroundTint="#868e96"
-        android:text="축소"
-        android:textColor="#ffa94d"
-        android:fontFamily="@font/baebalsmingok"
-        android:layout_marginLeft="350dp"
-        android:layout_marginTop="345dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_up"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="290dp"
+            android:background="@drawable/btn_style"
+            android:backgroundTint="#868e96"
+            android:fontFamily="@font/baebalsmingok"
+            android:text="확장"
+            android:textColor="#ffa94d" />
+
+        <Button
+            android:id="@+id/btn_down"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="345dp"
+            android:background="@drawable/btn_style"
+            android:backgroundTint="#868e96"
+            android:fontFamily="@font/baebalsmingok"
+            android:text="축소"
+            android:textColor="#ffa94d" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="400dp"
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:scrollbarFadeDuration="0"
-        android:scrollbarSize="5dp"
-        android:scrollbars="horizontal"/>
-</RelativeLayout>
+        <com.google.android.material.tabs.TabLayout
+            app:tabTextAppearance="@style/tab_text"
+            app:tabIndicatorColor="#ffa94d"
+            app:tabTextColor="@color/black"
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_Item1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="음식점" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_Item2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab2" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_Item3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab3" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

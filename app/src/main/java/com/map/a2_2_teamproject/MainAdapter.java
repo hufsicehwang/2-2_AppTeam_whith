@@ -1,5 +1,6 @@
 package com.map.a2_2_teamproject;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,13 @@ import java.util.ArrayList;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
 
     private ArrayList<Maindata> arrayList;
+    private Context context;
 
     public MainAdapter(ArrayList<Maindata> arrayList) {
+        this.arrayList = arrayList;
+    }
+    public MainAdapter(Context context, ArrayList<Maindata> arrayList){
+        this.context = context;
         this.arrayList = arrayList;
     }
 

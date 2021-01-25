@@ -11,6 +11,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import net.daum.android.map.MapViewEventListener;
 import net.daum.mf.map.api.CameraUpdateFactory;
@@ -23,7 +26,6 @@ import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
 
 
-import java.util.ArrayList;
 
 import static net.daum.mf.map.api.MapView.setMapTilePersistentCacheEnabled;
 public class MainActivity extends AppCompatActivity implements MapView.MapViewEventListener, MapView.POIItemEventListener, MapView.OpenAPIKeyAuthenticationResultListener{
@@ -32,26 +34,20 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
     int i = 0;
     Button up;
     Button down;
-    private ArrayList<Maindata> arrayList;
-    private MainAdapter mainAdapter;
-    private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv);
-        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        arrayList = new ArrayList<>();
-        mainAdapter = new MainAdapter(arrayList);
-        recyclerView.setAdapter(mainAdapter);
-        for(int i = 0;i<10;i++){
-            Maindata mainData = new Maindata(R.drawable.currybrown, "커리브라운", "외대로25번길 9"+i);
-            arrayList.add(mainData);
-        }
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+
+        //tab, viewpager연동
+        TabLayout tab = findViewById(R.id.tab);
+        tab.setupWithViewPager(viewPager);
 
 
 

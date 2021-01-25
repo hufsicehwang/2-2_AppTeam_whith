@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".test"></activity>
+        <activity android:name=".DetailActivity" />
         <activity android:name=".setAdress">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
