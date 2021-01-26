@@ -7,23 +7,27 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp">
+
         <Button
             android:id="@+id/btn_back"
-            android:layout_marginLeft="15dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_24"
             android:backgroundTint="@color/black"
-            android:background="@drawable/ic_baseline_arrow_back_ios_24"/>
+            android:gravity="center" />
+
         <TextView
-            android:layout_marginLeft="95dp"
-            android:textSize="30dp"
-            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WONDER PLACE"/>
+            android:layout_marginLeft="95dp"
+            android:text="WONDER PLACE"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
     </RelativeLayout>
 
@@ -32,6 +36,14 @@
         android:layout_width="match_parent"
         android:layout_height="355dp"
         android:orientation="vertical">
+        <Button
+            android:layout_marginTop="305dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btn_mylocation"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_baseline_location_searching_24"
+             />
 
         <Button
             android:id="@+id/btn_up"
@@ -58,38 +70,38 @@
             android:textColor="#ffa94d" />
     </RelativeLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            app:tabTextAppearance="@style/tab_text"
-            app:tabIndicatorColor="#ffa94d"
-            app:tabTextColor="@color/black"
-            android:id="@+id/tab"
-            android:layout_width="match_parent"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        app:tabIndicatorColor="#ffa94d"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabTextColor="@color/black">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_Item1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_margin="5dp">
+            android:text="음식점" />
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_Item1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="음식점" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_Item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tab2" />
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_Item2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tab2" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_Item3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tab3" />
+    </com.google.android.material.tabs.TabLayout>
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_Item3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tab3" />
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
