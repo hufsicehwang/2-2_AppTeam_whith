@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="20dp"
-    android:backgroundTint="#868e96"
+    android:background="#868e96"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".SplashActivity">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <TextView
+            android:id="@+id/text_splash"
             android:fontFamily="@font/baebalsmingok"
             android:textSize="70dp"
             android:textColor="#ffa94d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="WONDER" />
-
         <TextView
+            android:id="@+id/text_Splash2"
             android:textColor="#ffa94d"
             android:fontFamily="@font/baebalsmingok"
             android:textSize="70dp"
@@ -32,4 +27,3 @@
     </LinearLayout>
 
 
-</androidx.cardview.widget.CardView>
