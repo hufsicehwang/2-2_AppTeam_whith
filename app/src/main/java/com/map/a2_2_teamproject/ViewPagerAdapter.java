@@ -23,7 +23,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         // tab 이름 지정정
         itext.add("음식점");
         itext.add("카페");
-        itext.add("기타");
+        itext.add("명소");
     }
 
     @Nullable

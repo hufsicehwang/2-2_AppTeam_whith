@@ -18,7 +18,7 @@
             android:backgroundTint="@color/black"
             android:background="@drawable/ic_baseline_arrow_back_ios_24"/>
         <TextView
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="95dp"
             android:textSize="30dp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="350dp"
-            android:layout_marginTop="255dp"
+            android:layout_marginTop="253dp"
             android:background="@drawable/btn_style"
             android:backgroundTint="#868e96"
             android:fontFamily="@font/baebalsmingok"
@@ -50,7 +50,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="350dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="305dp"
             android:background="@drawable/btn_style"
             android:backgroundTint="#868e96"
             android:fontFamily="@font/baebalsmingok"
@@ -65,7 +65,8 @@
             android:id="@+id/tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginLeft="10dp"
+            android:layout_margin="5dp">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tab_Item1"

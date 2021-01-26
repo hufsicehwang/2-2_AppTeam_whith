@@ -62,21 +62,28 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         double b = intent.getDoubleExtra("경도1", 2);
         double c = intent.getDoubleExtra("위도2", 3);
         double d = intent.getDoubleExtra("경도2", 4);
-        final MapPOIItem marker = new MapPOIItem();
 
-        marker.setShowAnimationType(MapPOIItem.ShowAnimationType.DropFromHeaven); // 하늘에서 날라오는 애니메이션 마커 생성 전에 선언 해야함.
+        //marker 지정!!
+        final MapPOIItem marker1 = new MapPOIItem();
+        final MapPOIItem marker2 = new MapPOIItem();
+        final MapPOIItem marker3 = new MapPOIItem();
+        final MapPOIItem marker4 = new MapPOIItem();
+        final MapPOIItem marker5 = new MapPOIItem();
+
+        marker3.setShowAnimationType(MapPOIItem.ShowAnimationType.DropFromHeaven); // 하늘에서 날라오는 애니메이션 마커 생성 전에 선언 해야함.
 
 
 
 
         //마크1 지정!!!!!!!!!
         MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(a, b);   // 임의의 MapPoint 객체를 만듬
-        marker.setItemName("나의 위치");
-        marker.setTag(0);
-        marker.setMapPoint(mapPoint);
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-        mapView.addPOIItem(marker);
+        marker1.setItemName("나의 위치");
+        marker1.setTag(0);
+        marker1.setMapPoint(mapPoint);
+        marker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        marker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+        mapView.addPOIItem(marker1);
+        mapView.selectPOIItem(marker1,true); // 말풍선 항상 노출 허용
         //마크1지정!!!!!!!!!
         /* custom marker
         MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(a, b);
@@ -93,25 +100,29 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         */
         //마크2 지정!!!!!!!!!
         MapPoint mapPoint2 = MapPoint.mapPointWithGeoCoord(c, d);   // 임의의 MapPoint 객체를 만듬
-        marker.setItemName("친구 위치");
-        marker.setTag(1);
-        marker.setMapPoint(mapPoint2);
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-        mapView.addPOIItem(marker);
+        marker2.setItemName("친구 위치");
+        marker2.setTag(1);
+        marker2.setMapPoint(mapPoint2);
+        marker2.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        marker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+        mapView.addPOIItem(marker2);
+        mapView.selectPOIItem(marker2,true); // 말풍선 항상 노출 허용
         //마크2지정!!!!!!!!!
+
         final double e = (a+c) /2;
         final double f = (b+d) /2;
+
         //마크3 지정!!!!!!!!!
         MapPoint mapPoint3 = MapPoint.mapPointWithGeoCoord(e, f);   // 임의의 MapPoint 객체를 만듬
-        marker.setItemName("중간 지점");
-        marker.setTag(1);
-        marker.setMapPoint(mapPoint3);
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-        mapView.addPOIItem(marker);
+        marker3.setItemName("중간 지점");
+        marker3.setTag(1);
+        marker3.setMapPoint(mapPoint3);
+        marker3.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        marker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+        mapView.addPOIItem(marker3);
+        mapView.selectPOIItem(marker3,true); // 말풍선 항상 노출 허용
         //마크3지정!!!!!!!!!
-        mapView.selectPOIItem(marker, true);
+
 
         //polyline!!!!!!!!!!!!
         MapPolyline polyline = new MapPolyline();
@@ -155,7 +166,10 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, setAdress.class);
-                mapView.removePOIItem(marker);
+                mapView.removePOIItem(marker1);
+                mapView.removePOIItem(marker2);
+                mapView.removePOIItem(marker3);
+                mapView.removeCircle(circle1);
                 startActivity(intent);
 
             }
