@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -254,6 +253,8 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         mapView.setPOIItemEventListener(this);
         onMapViewInitialized(mapView);
 
+
+        // 내 위치 버튼 구현
         final Drawable mylocation_icon = getDrawable(R.drawable.ic_baseline_change_location_searching_24);
         mapView.setCurrentLocationEventListener(this);
         final Button mylocation = findViewById(R.id.btn_mylocation);
