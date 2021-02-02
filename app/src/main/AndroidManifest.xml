@@ -21,14 +21,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".test" />
-        <activity android:name=".DetailActivity" />
+        <activity android:name=".DetailActivity" >
+        </activity>
         <activity android:name=".setAdress">
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
+        </activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="cca7b4bda661b308a929e0d40af4e2b3" />
+            android:value="0ceb8fa479e49ebc3298518524363d08" />
     </application>
 
 </manifest>
