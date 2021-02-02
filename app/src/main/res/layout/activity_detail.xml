@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="세부 페이지 미구현 ^^;;`````"
+        android:text="바꿨다 시발아"
         android:textColor="@color/black"
         android:textSize="40dp"
         android:fontFamily="@font/baebalsmingok"
