@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
 
         text1 = findViewById(R.id.text_splash);
         text2 = findViewById(R.id.text_Splash2);
-        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.scale);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.alpha);
         text1.startAnimation(animation);
         text2.startAnimation(animation);
 

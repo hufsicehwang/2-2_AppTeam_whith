@@ -14,7 +14,8 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".serchActivity"></activity>
-        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".SplashActivity">
+        </activity>
         <activity android:name=".test" />
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".setAdress">
@@ -28,7 +29,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="f158c92e981e281524d553f24aa80a3a" />
+            android:value="0ceb8fa479e49ebc3298518524363d08" />
     </application>
 
 </manifest>
