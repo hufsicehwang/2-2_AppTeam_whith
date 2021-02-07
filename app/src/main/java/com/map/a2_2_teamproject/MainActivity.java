@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -22,6 +23,10 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.map.a2_2_teamproject.ApiInterface.ApiClient;
+import com.map.a2_2_teamproject.ApiInterface.ApiInterface;
+import com.map.a2_2_teamproject.model.category_search.CategoryResult;
+import com.map.a2_2_teamproject.model.category_search.Document;
 
 import net.daum.mf.map.api.CameraUpdateFactory;
 import net.daum.mf.map.api.MapCircle;
@@ -34,7 +39,13 @@ import net.daum.mf.map.api.MapReverseGeoCoder;
 import net.daum.mf.map.api.MapView;
 
 
+import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static net.daum.mf.map.api.MapPoint.mapPointWithGeoCoord;
 import static net.daum.mf.map.api.MapView.setMapTilePersistentCacheEnabled;
 public class MainActivity extends AppCompatActivity implements MapView.MapViewEventListener, MapView.POIItemEventListener, MapView.OpenAPIKeyAuthenticationResultListener,MapView.CurrentLocationEventListener, MapReverseGeoCoder.ReverseGeoCodingResultListener {
     MapView mapView;
@@ -44,6 +55,23 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
     Button up;
     Button down;
     Button back;
+
+    //태혁이 넣은 변수
+    MapPoint currentMapPoint;
+    private double mCurrentLng; //Long = X, Lat = Yㅌ
+    private double mCurrentLat;
+    private double mSearchLng;
+    private double mSearchLat;
+    private String mSearchName;
+    boolean isTrackingMode = false;
+
+    ArrayList<Document> bigMartList = new ArrayList<>();
+    ArrayList<Document> documentArrayList = new ArrayList<>(); //지역명 검색 결과 리스트
+
+    MapPOIItem searchMarker = new MapPOIItem();
+
+    //태혁 변수 끝
+
 
     //내위치
     private static final String LOG_TAG = "MainActivity";
@@ -56,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//화면 못움직이게
         setContentView(R.layout.activity_main);
 
         ViewPager viewPager = findViewById(R.id.viewpager);
@@ -274,6 +303,68 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
 
     }
 
+    //태혁 통신 메소드
+    private void requestSearchLocal(double x, double y) {
+
+        //여밑에가 통신 코드를 메인에서 세팅해서 필요한거 불러오기
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);   // ApiInterface 객체에 레트로핏 객체를 매핑시키는 부분이다.
+        Call<CategoryResult> call = apiInterface.getSearchCategory("MT1", x + "", y + "", 1000); //레트로핏 객체를 통해 만들어논 요청 메소드에 원하는거 담아서 보내기
+        call.enqueue(new Callback<CategoryResult>() { //실행하는 메소드
+            @Override
+            public void onResponse(@NonNull Call<CategoryResult> call, @NonNull Response<CategoryResult> response) {
+
+                if (response.isSuccessful()) {
+
+
+                    bigMartList.addAll(response.body().getDocuments()); //리스트안에 응답받아온것을(documents를) 넣는다.
+                    Log.d(LOG_TAG, "bigMartList Success");
+
+
+//                   통신 성공 시 circle 생성
+                    MapCircle circle1 = new MapCircle(
+                            mapPointWithGeoCoord(y, x), // center
+                            1000, // radius
+                            Color.argb(128, 255, 0, 0), // strokeColor
+                            Color.argb(128, 0, 255, 0) // fillColor
+                    );
+                    circle1.setTag(1234);
+                    mapView.addCircle(circle1);
+                    Log.d("SIZE1", bigMartList.size() + "");
+
+                    int tagNum = 0;
+                    for (Document document : bigMartList) {
+                        MapPOIItem marker = new MapPOIItem();
+
+                        marker.setItemName(document.getPlaceName());
+                        marker.setTag(tagNum++);
+                        double x = Double.parseDouble(document.getY());
+                        double y = Double.parseDouble(document.getX());
+                        //카카오맵은 참고로 new MapPoint()로  생성못함. 좌표기준이 여러개라 이렇게 메소드로 생성해야함
+                        MapPoint mapPoint = mapPointWithGeoCoord(x, y);
+                        marker.setMapPoint(mapPoint);
+                        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+//                        marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커타입을 커스텀 마커로 지정.
+//                        marker.setCustomImageResourceId(R.drawable.ic_add_black_24dp); // 마커 이미지.
+//                        marker.setCustomImageAutoscale(false); // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
+//                        marker.setCustomImageAnchor(0.5f, 1.0f); // 마커 이미지중 기준이 되는 위치(앵커포인트) 지정 - 마커 이미지 좌측 상단 기준 x(0.0f ~ 1.0f), y(0.0f ~ 1.0f) 값.
+                        mapView.addPOIItem(marker);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CategoryResult> call, Throwable t) {
+                Log.d(LOG_TAG, "FAIL");
+
+            }
+        });
+
+
+
+    }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -281,10 +372,22 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         mapView.setShowCurrentLocationMarker(false);
     }
 
-    @Override
+    @Override //태혁이 여기 추가함
     public void onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters) {
         MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
         Log.i(LOG_TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
+        currentMapPoint = MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude);
+//        이 좌표로 지도 중심 이동
+        mapView.setMapCenterPoint(currentMapPoint, true);
+//        전역변수로 현재 좌표 저장
+        mCurrentLat = mapPointGeo.latitude;
+        mCurrentLng = mapPointGeo.longitude;
+        Log.d(LOG_TAG, "현재위치 => " + mCurrentLat + "  " + mCurrentLng);
+//        mLoaderLayout.setVisibility(View.GONE);
+        //트래킹 모드가 아닌 단순 현재위치 업데이트일 경우, 한번만 위치 업데이트하고 트래킹을 중단시키기 위한 로직
+        if (!isTrackingMode) {
+            mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        }
     }
 
 
@@ -465,6 +568,8 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
+
+
 
     @Override
     public void onMapViewInitialized(MapView mapView) {
