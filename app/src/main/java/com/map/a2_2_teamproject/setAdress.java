@@ -21,19 +21,19 @@ import java.util.ArrayList;
 
 import com.map.a2_2_teamproject.adapter.LocationAdapter;
 import com.map.a2_2_teamproject.model.category_search.Document;
-import com.squareup.otto.Bus;
-import com.squareup.otto.Subscribe;
+//import com.squareup.otto.Bus;
+//import com.squareup.otto.Subscribe;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapView;
 
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+//import retrofit2.Call;
+//import retrofit2.Callback;
+//import retrofit2.Response;
 
 public class setAdress extends AppCompatActivity {
     double a = 37.33758102688846;
@@ -50,9 +50,14 @@ public class setAdress extends AppCompatActivity {
     private double mSearchLat;
     private String mSearchName;
 
-    Bus bus = BusProvider.getInstance();
+    //Bus bus = BusProvider.getInstance();
     ArrayList<Document> documentArrayList = new ArrayList<>(); //지역명 검색 결과 리스트
     MapPOIItem searchMarker = new MapPOIItem();
+
+    Button btn_search;
+    LinearLayoutManager linearLayoutManager;
+    ArrayList arrayList;
+    SubAdapter subAdapter;
 
 
     //밑에는 xml에 만들고 mSearchEdit 변수 선언
@@ -73,23 +78,21 @@ public class setAdress extends AppCompatActivity {
 
     //태혁 변수 끝
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//화면 못움직이게
         setContentView(R.layout.activity_set_adress);
 
-        bus.register(this); //정류소 등록
 
-//        mSearchEdit = findViewById(R.id.map_et_search);
-//    recyclerView = findViewById(R.id.map_recyclerview);
-//    LocationAdapter locationAdapter = new LocationAdapter(documentArrayList, getApplicationContext(), mSearchEdit, recyclerView);
-//    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false); //레이아웃매니저 생성
-//        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL)); //아래구분선 세팅
-//        recyclerView.setLayoutManager(layoutManager);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//화면 못움직이게
+        //bus.register(this); //정류소 등록
+
+//      mSearchEdit = findViewById(R.id.map_et_search);
+//      recyclerView = findViewById(R.id.map_recyclerview);
+//      LocationAdapter locationAdapter = new LocationAdapter(documentArrayList, getApplicationContext(), mSearchEdit, recyclerView);
+//      LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false); //레이아웃매니저 생성
+//      recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL)); //아래구분선 세팅
+//      recyclerView.setLayoutManager(layoutManager);
 //        recyclerView.setAdapter(locationAdapter);
 
 
@@ -151,16 +154,6 @@ public class setAdress extends AppCompatActivity {
 //            }
 //        }
 //    });
-      
-    Button btn_search;
-    RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager;
-    ArrayList arrayList;
-    SubAdapter subAdapter;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_adress);
 
         recyclerView = (RecyclerView) findViewById(R.id.rc_sub);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -242,12 +235,12 @@ public class setAdress extends AppCompatActivity {
 
 //    }
 
-    @Override
+/*    @Override
     public void finish() {
         super.finish();
         bus.unregister(this); //이액티비티 떠나면 정류소 해제해줌
     }
 
 
-
+*/
 }

@@ -18,18 +18,15 @@
         <activity android:name=".serchActivity"></activity>
         <activity android:name=".setAdress"></activity>
         <activity android:name=".SplashActivity">
-        </activity>
-        <activity android:name=".test" />
-        <activity android:name=".DetailActivity"></activity>
-        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".test" />
+        <activity android:name=".DetailActivity"></activity>
         <activity android:name=".MainActivity"></activity>
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="0ceb8fa479e49ebc3298518524363d08" />
