@@ -21,19 +21,16 @@ import java.util.ArrayList;
 
 import com.map.a2_2_teamproject.adapter.LocationAdapter;
 import com.map.a2_2_teamproject.model.category_search.Document;
-//import com.squareup.otto.Bus;
-//import com.squareup.otto.Subscribe;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapView;
-
-//import org.jetbrains.annotations.NotNull;
-
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
-
-//import retrofit2.Call;
-//import retrofit2.Callback;
-//import retrofit2.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class setAdress extends AppCompatActivity {
     double a = 37.33758102688846;
@@ -50,7 +47,7 @@ public class setAdress extends AppCompatActivity {
     private double mSearchLat;
     private String mSearchName;
 
-    //Bus bus = BusProvider.getInstance();
+    Bus bus = BusProvider.getInstance();
     ArrayList<Document> documentArrayList = new ArrayList<>(); //지역명 검색 결과 리스트
     MapPOIItem searchMarker = new MapPOIItem();
 
@@ -58,23 +55,6 @@ public class setAdress extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     ArrayList arrayList;
     SubAdapter subAdapter;
-
-
-    //밑에는 xml에 만들고 mSearchEdit 변수 선언
-//    <EditText
-//
-//    android:id="@+id/map_et_search"
-//    android:layout_width="400dp"
-//    android:layout_height="wrap_content"
-//    android:hint="검색 할 장소를 입력 후 선택해주세요" />
-
-    //밑에는 xml에 만들고 map_recyclerview 변수 선언
-//    <androidx.recyclerview.widget.RecyclerView
-//    android:id="@+id/map_recyclerview"
-//    android:layout_width="match_parent"
-//    android:layout_height="400dp"
-//    android:visibility="gone" />
-
 
     //태혁 변수 끝
 
@@ -85,18 +65,18 @@ public class setAdress extends AppCompatActivity {
 
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//화면 못움직이게
-        //bus.register(this); //정류소 등록
+        bus.register(this); //정류소 등록
 
-//      mSearchEdit = findViewById(R.id.map_et_search);
-//      recyclerView = findViewById(R.id.map_recyclerview);
-//      LocationAdapter locationAdapter = new LocationAdapter(documentArrayList, getApplicationContext(), mSearchEdit, recyclerView);
-//      LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false); //레이아웃매니저 생성
-//      recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL)); //아래구분선 세팅
-//      recyclerView.setLayoutManager(layoutManager);
+//        mSearchEdit = findViewById(R.id.map_et_search);
+//        recyclerView = findViewById(R.id.map_recyclerview);
+//        LocationAdapter locationAdapter = new LocationAdapter(documentArrayList, getApplicationContext(), mSearchEdit, recyclerView);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false); //레이아웃매니저 생성
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL)); //아래구분선 세팅
+//        recyclerView.setLayoutManager(layoutManager);
 //        recyclerView.setAdapter(locationAdapter);
 
 
-//    mSearchEdit.addTextChangedListener(new TextWatcher() {
+//      mSearchEdit.addTextChangedListener(new TextWatcher() {
 //        @Override
 //        public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
 //            // 입력하기 전에
@@ -162,6 +142,16 @@ public class setAdress extends AppCompatActivity {
         subAdapter = new SubAdapter(arrayList);
         recyclerView.setAdapter(subAdapter);
 
+
+        btn_search = findViewById(R.id.btn_search);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(setAdress.this, searchActivity.class);
+                startActivity(intent);
+            }
+        });
+        /* 아이템 리스트 add
         btn_search = findViewById(R.id.btn_search);
         final SubData subData1 = new SubData(R.drawable.person1,"첫번째 출발지점 \uD83D\uDE03","서현역");
         final SubData subData2 = new SubData(R.drawable.person2,"두번째 출발지점 \uD83D\uDE04","서현역");
@@ -190,6 +180,8 @@ public class setAdress extends AppCompatActivity {
                 subAdapter.notifyDataSetChanged();
             }
         });
+
+         */
 
 
 

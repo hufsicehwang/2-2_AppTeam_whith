@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.map.a2_2_teamproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".serchActivity"></activity>
-        <activity android:name=".setAdress"></activity>
+        <activity android:name=".searchActivity"></activity>
+        <activity android:name=".serchActivity" />
+        <activity android:name=".setAdress" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".test" />
-        <activity android:name=".DetailActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".MainActivity" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="0ceb8fa479e49ebc3298518524363d08" />
