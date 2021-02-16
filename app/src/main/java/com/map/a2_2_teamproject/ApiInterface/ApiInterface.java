@@ -15,10 +15,10 @@ public interface ApiInterface
 
 
 // 우선 서버 통신 연습
-    @GET("tests")
-    Call<ResponseBody> get_Test(
-            @Query("format") String json
-    );
+//    @GET("tests")
+//    Call<ResponseBody> get_Test(
+//            @Query("format") String json
+//    );
 
 //    장소이름으로 검색
 //    @Headers("Authorization: KakaoAK 69406d6f78e94450237e9dc116fc151e")
@@ -43,7 +43,7 @@ public interface ApiInterface
 
 
 //    장소이름으로 검색
-    @Headers("Authorization: KakaoAK 키는 바꾼거 넣기")
+    @Headers("Authorization: KakaoAK f378b9794a8880c4717f980ac9e78f76")
     @GET("v2/local/search/keyword.json")
     Call<CategoryResult> getSearchLocation(
             @Query("query") String query,
