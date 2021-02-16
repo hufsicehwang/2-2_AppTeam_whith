@@ -16,6 +16,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".searchActivity"></activity>
+        <activity android:name=".serchActivity" />
         <activity android:name=".setAdress" />
         <activity android:name=".SplashActivity">
             <intent-filter>
