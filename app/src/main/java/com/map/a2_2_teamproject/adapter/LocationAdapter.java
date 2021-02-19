@@ -1,6 +1,7 @@
 package com.map.a2_2_teamproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.map.a2_2_teamproject.BusProvider;
 import com.map.a2_2_teamproject.R;
 import com.map.a2_2_teamproject.model.category_search.Document;
+import com.map.a2_2_teamproject.searchActivity;
+import com.map.a2_2_teamproject.setAdress;
 
 import java.util.ArrayList;
 
