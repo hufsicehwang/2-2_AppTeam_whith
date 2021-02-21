@@ -120,19 +120,28 @@ public class searchActivity extends AppCompatActivity {
 
     }
 
-    @Subscribe
+    @Subscribe // 검색후 클릭했을때 여기 이벤트 감지
     public void search(Document document) {
+        //이 안에다 쓴 이유는 누른 데이터 정보가 필요해서
+
+        Double mSearchLng = Double.parseDouble(document.getX());
+        Double mSearchLat = Double.parseDouble(document.getY());
 
         btn_put = findViewById(R.id.btn_put);
         btn_put.setOnClickListener(new Button.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(searchActivity.this, setAdress.class);
-                intent.putExtra("사람1",document.getAddressName());
+                intent.putExtra("사람1",document.getAddressName()); //누른거 감지 했을떄 intent로 보낼때 깨지니까
+                intent.putExtra("위도111",mSearchLat);
+                intent.putExtra("경도111",mSearchLng);
                 startActivity(intent);
             }
         });
+
+
 
     }
 

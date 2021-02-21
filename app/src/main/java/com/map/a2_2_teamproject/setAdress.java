@@ -43,8 +43,8 @@ public class setAdress extends AppCompatActivity {
     EditText mSearchEdit;
     RecyclerView recyclerView;
     TextView textView;
-    private double mSearchLng;
-    private double mSearchLat;
+//    private double mSearchLng;
+//    private double mSearchLat;
     private String mSearchName;
 
 
@@ -120,6 +120,17 @@ public class setAdress extends AppCompatActivity {
          */
 
 
+        addressconfirm = findViewById(R.id.addressconfirm);
+        Intent getIntent = getIntent();
+        String address = getIntent.getStringExtra("사람1");
+        Double mSearchLng = getIntent.getDoubleExtra("경도111",1);
+        Double mSearchLat = getIntent.getDoubleExtra("위도111",2);
+
+        addressconfirm.setText(address);
+
+
+
+
 
         btn = findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +138,8 @@ public class setAdress extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(setAdress.this, MainActivity.class);
-                intent.putExtra("위도1",a);
-                intent.putExtra("경도1",b);
+                intent.putExtra("위도1",mSearchLat);
+                intent.putExtra("경도1",mSearchLng);
                 intent.putExtra("위도2",c);
                 intent.putExtra("경도2",d);
                 startActivity(intent);
@@ -136,11 +147,7 @@ public class setAdress extends AppCompatActivity {
         });
 
 
-        addressconfirm = findViewById(R.id.addressconfirm);
-        Intent getIntent = getIntent();
-        String address = getIntent.getStringExtra("사람1");
 
-        addressconfirm.setText(address);
 
     }
 
