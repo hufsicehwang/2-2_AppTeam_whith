@@ -43,15 +43,16 @@ public class setAdress extends AppCompatActivity {
     EditText mSearchEdit;
     RecyclerView recyclerView;
     TextView textView;
-    private double mSearchLng;
-    private double mSearchLat;
+//    private double mSearchLng;
+//    private double mSearchLat;
     private String mSearchName;
 
-    Bus bus = BusProvider.getInstance();
+
     ArrayList<Document> documentArrayList = new ArrayList<>(); //지역명 검색 결과 리스트
     MapPOIItem searchMarker = new MapPOIItem();
 
     Button btn_search;
+    TextView addressconfirm;
     LinearLayoutManager linearLayoutManager;
     ArrayList arrayList;
     SubAdapter subAdapter;
@@ -65,7 +66,7 @@ public class setAdress extends AppCompatActivity {
 
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//화면 못움직이게
-        bus.register(this); //정류소 등록
+
 
 
 
@@ -119,55 +120,66 @@ public class setAdress extends AppCompatActivity {
          */
 
 
+        addressconfirm = findViewById(R.id.addressconfirm);
+        Intent getIntent = getIntent();
+        String address = getIntent.getStringExtra("사람1");
+        Double mSearchLng = getIntent.getDoubleExtra("경도111",1);
+        Double mSearchLat = getIntent.getDoubleExtra("위도111",2);
+
+        addressconfirm.setText(address);
+
+
+
+
 
         btn = findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
 
-
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(setAdress.this, MainActivity.class);
-                intent.putExtra("위도1",a);
-                intent.putExtra("경도1",b);
+                intent.putExtra("위도1",mSearchLat);
+                intent.putExtra("경도1",mSearchLng);
                 intent.putExtra("위도2",c);
                 intent.putExtra("경도2",d);
                 startActivity(intent);
             }
         });
-    }
 
-//    @Subscribe //검색예시 클릭시 이벤트 오토버스 버스 일루온나
-//    public void search(Document document) {//public항상 붙여줘야함
-//        mSearchName = document.getPlaceName();
-//        mSearchLng = Double.parseDouble(document.getX());
-//        mSearchLat = Double.parseDouble(document.getY());
-//
-////        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(mSearchLat, mSearchLng), true);
-////        mapView.removePOIItem(searchMarker);
-//        mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
-//        mMapView.removeAllCircles();
-////        mMapView.removeAllPOIItems();
-//
-//
-////        searchMarker.setItemName(mSearchName);
-////        searchMarker.setTag(10000);
-////        MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(mSearchLat, mSearchLng);
-////        searchMarker.setMapPoint(mapPoint);
-////        searchMarker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-////        searchMarker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-////        //마커 드래그 가능하게 설정
-//////        searchMarker.setDraggable(true);
-////        mMapView.addPOIItem(searchMarker);
 
-//    }
 
-/*    @Override
-    public void finish() {
-        super.finish();
-        bus.unregister(this); //이액티비티 떠나면 정류소 해제해줌
+
     }
 
 
-*/
+
+
+/*    @Subscribe //검색예시 클릭시 이벤트 오토버스 버스 일루온나
+    public void search(Document document) {//public항상 붙여줘야함
+        mSearchName = document.getPlaceName();
+        mSearchLng = Double.parseDouble(document.getX());
+        mSearchLat = Double.parseDouble(document.getY());
+
+        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(mSearchLat, mSearchLng), true);
+        mapView.removePOIItem(searchMarker);
+        mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        mMapView.removeAllCircles();
+        mMapView.removeAllPOIItems();
+
+
+        searchMarker.setItemName(mSearchName);
+        searchMarker.setTag(10000);
+        MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(mSearchLat, mSearchLng);
+        searchMarker.setMapPoint(mapPoint);
+        searchMarker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        searchMarker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+        //마커 드래그 가능하게 설정
+        searchMarker.setDraggable(true);
+        mMapView.addPOIItem(searchMarker);
+
+    }
+
+ */
+
+
 }
