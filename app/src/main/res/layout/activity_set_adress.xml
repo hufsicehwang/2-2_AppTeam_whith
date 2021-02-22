@@ -24,6 +24,15 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="400dp"/>
+
+    <TextView
+        android:id="@+id/addressconfirm"
+        android:layout_width="114dp"
+        android:layout_height="31dp"
+        android:textColor="@color/black"
+        android:text="addressconfirm"/>
+
+
     <Button
         android:fontFamily="@font/baebalsmingok"
         android:background="@drawable/btn_style"
