@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements MapView.MapViewEv
     ArrayList<Document> documentArrayList = new ArrayList<>(); //지역명 검색 결과 리스트
 
     MapPOIItem searchMarker = new MapPOIItem();
-
     //태혁 변수 끝
 
 
