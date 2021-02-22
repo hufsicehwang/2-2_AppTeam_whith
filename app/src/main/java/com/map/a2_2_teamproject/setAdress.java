@@ -125,7 +125,6 @@ public class setAdress extends AppCompatActivity {
         String address = getIntent.getStringExtra("사람1");
         Double mSearchLng = getIntent.getDoubleExtra("경도111",1);
         Double mSearchLat = getIntent.getDoubleExtra("위도111",2);
-
         addressconfirm.setText(address);
 
 
